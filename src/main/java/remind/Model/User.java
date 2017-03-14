@@ -23,7 +23,7 @@ public class User {
 	String name;
 	@Column(name = "email", nullable = false)
 	String email;
-	
+
 	
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -69,10 +69,11 @@ public class User {
 		}
 		return this.password.equals(password);
 	}
+
 	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";
+		return userId;
 	}
 	
 }

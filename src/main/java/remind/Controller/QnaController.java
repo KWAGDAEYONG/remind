@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import remind.Model.Question;
+import remind.Model.User;
 import remind.Repository.QnaRepository;
 import remind.utility.LoginSession;
 
@@ -29,7 +30,9 @@ public class QnaController {
 	}
 	
 	@PostMapping("")
-	public String getQ(Question question, Model model){
+	public String getQ(Question question, Model model, HttpSession session){
+		User user = (User)session.getAttribute("loginUser");
+		question.setQ_user(user);
 		qnaRepository.save(question);
 		model.addAttribute("question", question);
 		return "redirect:/";

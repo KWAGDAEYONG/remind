@@ -16,9 +16,10 @@ public class LoginSession {
 	 }
 	 public static Boolean matchLogin(HttpSession session, User loginUser){
 	 	User sessionUser = (User)session.getAttribute(SESSION_USER_KEY);
-	 	if(sessionUser.getUserId()==loginUser.getUserId()){
-	 		return false;
+	 	if(sessionUser.getUserId().equals(loginUser.getUserId())){
+
+	 		return true;
 		}
-		return true;
+		return false;
 	 }
 }

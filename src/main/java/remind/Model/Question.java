@@ -1,9 +1,6 @@
 package remind.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Question {
@@ -11,9 +8,10 @@ public class Question {
 	@Id
 	@GeneratedValue
 	int q_id;
-	
-	@Column(name="q_user", nullable=false)
-	String q_user;
+
+	@ManyToOne
+	@JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"))
+	User writer;
 	
 	@Column(name="title", nullable=false)
 	String title;
@@ -25,8 +23,8 @@ public class Question {
 		this.q_id = q_id;
 	}
 	
-	public void setQ_user(String q_user) {
-		this.q_user = q_user;
+	public void setQ_user(User q_user) {
+		this.writer = q_user;
 	}
 	
 	public void setTitle(String title) {

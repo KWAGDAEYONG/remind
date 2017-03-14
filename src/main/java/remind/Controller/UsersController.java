@@ -48,6 +48,7 @@ public class UsersController {
 
 	@GetMapping("/{id}/gotoupdate")
 	public String gotoupdate(@PathVariable Long id, Model model, HttpSession session) {
+
 		if(!LoginSession.isLogin(session)){
 			return "/users/login_form";
 		}
@@ -68,10 +69,10 @@ public class UsersController {
 
 	@PostMapping("/update/{id}")
 	public String update(@PathVariable Long id, User user, HttpSession session) {
-		if(LoginSession.isLogin(session)){
+		if(!LoginSession.isLogin(session)){
 			return "/users/login_form";
 		}
-		if(LoginSession.matchLogin(session,userRepository.findOne(id))){
+		if(!LoginSession.matchLogin(session,userRepository.findOne(id))){
 			log.debug("사용자가 틀립니다.");
 			return "redirect:/";
 		}
