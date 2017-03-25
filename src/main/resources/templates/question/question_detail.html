@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {{> /include/header }}
+</head>
+<body>
+{{#question}}
+<tr>
+    <td>{{writer}}</td>
+    <td>{{title}}</td>
+    <td>{{content}}</td>
+</tr>
+{{/question}}
+
+{{#loginUser}}
+<li><a href="/question/updateForm/{{q_id}}">수정</a></li>
+{{/loginUser}}
+</body>
+</html>

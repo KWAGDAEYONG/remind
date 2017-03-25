@@ -7,7 +7,7 @@ public class Question {
 	
 	@Id
 	@GeneratedValue
-	int q_id;
+	Long q_id;
 
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"))
@@ -19,7 +19,7 @@ public class Question {
 	@Column(name="content", nullable=false)
 	String content;
 	
-	public void setQ_id(int q_id) {
+	public void setQ_id(Long q_id) {
 		this.q_id = q_id;
 	}
 	
@@ -34,5 +34,13 @@ public class Question {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
+	public User getWriter() {
+		return writer;
+	}
+
+	public void update(Question question){
+		this.content = question.content;
+		this.title = question.title;
+	}
 }

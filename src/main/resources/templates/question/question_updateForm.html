@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {{> /include/header }}
+</head>
+<body>
+{{#question}}
+<form action="/question/update/{{q_id}}" method="post">
+    제목:<input type="text" name="title" value = {{title}}><br><br>
+    내용:<textarea name = "content"></textarea><br>
+    <br>
+    <input type="submit" value="확인">
+</form>
+{{/question}}
+</body>
+</html>
