@@ -1,23 +1,27 @@
 package remind.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Question {
 	
 	@Id
 	@GeneratedValue
-	Long q_id;
+	private Long q_id;
 
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"))
-	User writer;
+	private User writer;
 	
 	@Column(name="title", nullable=false)
-	String title;
+	private String title;
 	
 	@Column(name="content", nullable=false)
-	String content;
+	private String content;
+
+	@OneToMany(mappedBy="question")
+	private List<Answer> answers;
 	
 	public void setQ_id(Long q_id) {
 		this.q_id = q_id;

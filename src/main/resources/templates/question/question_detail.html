@@ -12,10 +12,13 @@
     <td>{{title}}</td>
     <td>{{content}}</td>
 </tr>
+
 {{/question}}
 
 {{#loginUser}}
 <li><a href="/question/updateForm/{{q_id}}">수정</a></li>
+<li><a href="/answer/form/{{q_id}}">댓글달기</a></li>
 {{/loginUser}}
+
 </body>
 </html>
