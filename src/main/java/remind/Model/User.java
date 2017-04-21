@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +20,7 @@ public class User {
 	@Column(unique = true, name = "userId", nullable = false)
 	String userId;
 	@Column(name = "password", nullable = false)
+	@JsonIgnore
 	String password;
 	@Column(name = "name", nullable = false)
 	String name;
