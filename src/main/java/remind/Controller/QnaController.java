@@ -46,7 +46,6 @@ public class QnaController {
 	public String questionDetail(@PathVariable Long q_id, Model model){
 		Question question = qnaRepository.findOne(q_id);
 		model.addAttribute("question", question);
-
 		return "/question/question_detail";
 	}
 
