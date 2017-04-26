@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/answer")
 public class AnswerController {
-    private static final Logger log = LoggerFactory.getLogger(UsersController.class);
+    private static final Logger log = LoggerFactory.getLogger(AnswerController.class);
 
     @Autowired
     QnaRepository qnaRepository;
@@ -31,11 +31,5 @@ public class AnswerController {
         answer.setWriter((User)session.getAttribute("loginUser"));
         answer.setQuestion(qnaRepository.findOne(q_id));
         return answerRepository.save(answer);
-    }
-
-    @GetMapping("/form/{q_id}")
-    public String gotoAnswerForm(@PathVariable Long q_id ,Model model){
-        model.addAttribute("q_id",q_id);
-        return "/answer/answer_form";
     }
 }
