@@ -39,13 +39,10 @@
         <div>
             <ul>
                 <li>
-                    <a href ="/api/qna/updateAnswer/{{a_id}}">수정</a>
+                    <a href ="/question/updateAnswer/{{a_id}}">수정</a>
                 </li>
                 <li>
-                    <form action="/api/questions/{q_id}/answers/{{a_id}}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit">삭제</button>
-                    </form>
+                    <a class="delete-article" href ="/question/deleteAnswer/{{a_id}}">삭제</a>
                 </li>
             </ul>
         </div>
@@ -59,6 +56,14 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
     $(".answer-write input[type=submit]").click(addAnswer);
+    $("a.delete-article").click(deleteAnswer);
+
+    function deleteAnswer(e) {
+        e.preventDefault();
+
+        var url = $(this).attr("href");
+        console.log("url:"+url);
+    }
 
     function addAnswer(e) {
         console.log("click me");
@@ -84,7 +89,7 @@
     function onSuccess(data, status) {
         console.log(data);
         var answerTemplate = $("#answerTemplate").html();
-        var template = answerTemplate.format(data.writer.userId, data.content,data.id, data.id);
+        var template = answerTemplate.format(data.writer.userId, data.content,data.id);
         $(".answerList").append(template);
         $("textarea[name=content]").val("");
     }
@@ -114,10 +119,7 @@
                     <a href ="/api/qna/updateAnswer/{2}">수정</a>
                 </li>
                 <li>
-                    <form action="/api/questions/{2}/answers/{3}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit">삭제</button>
-                    </form>
+                    <a class="delete-article" href ="/question/deleteAnswer/{2}">삭제</a>
                 </li>
             </ul>
         </div>
