@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div id='player'></div>
+
+<script src='https://www.youtube.com/iframe_api'></script>
+
+<script>
+
+    function onYouTubeIframeAPIReady() {
+
+        player = new YT.Player('player', {
+            width: '640',
+            height: '360',
+            videoId: 'OYiBU02xc8U',
+            playerVars: {
+                'autoplay': 1, 'showinfo': 0, 'rel': 0, 'modestbranding': 1,
+                'wmode': 'transparent', 'autohide': 1
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+
+        });
+
+        window.tmp_obj = player;
+
+    }
+
+    function onPlayerReady(event) {
+        event.target.setPlaybackQuality("hd720");
+        event.target.playVideo();
+
+        console.log(tmp_obj.getCurrentTime());
+
+        console.log(tmp_obj.getDuration());
+
+    }
+    var playerState;
+    function onPlayerStateChange(event) {
+
+
+        event.target.setPlaybackQuality('hd720');
+        playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
+            event.data == YT.PlayerState.PLAYING ? '재생 중' :
+                event.data == YT.PlayerState.PAUSED ? '일시중지 됨' :
+                    event.data == YT.PlayerState.BUFFERING ? '버퍼링 중' :
+                        event.data == YT.PlayerState.CUED ? '재생준비 완료됨' :
+                            event.data == -1 ? '시작되지 않음' : '예외';
+        console.log('onPlayerStateChange 실행: ' + playerState);
+        console.log(tmp_obj.getCurrentTime());
+        console.log(tmp_obj.getDuration());
+    }
+
+</script>
+</body>
+</html>

@@ -19,4 +19,14 @@ public class HomeController {
 		model.addAttribute("question", qnaRepository.findAll());
 		return "/index";	
 	}
+
+	@GetMapping("/yt")
+	public String yt(){
+		return "/yt_test";
+	}
+
+	@GetMapping("/dApp")
+	public String dApp(){
+		return "/dApp";
+	}
 }
